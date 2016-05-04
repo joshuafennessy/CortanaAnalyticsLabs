@@ -1,0 +1,48 @@
+{
+    "name": "Dataset-File-finalOpenComplaints",
+    "properties": {
+        "structure": [
+            {
+                "name": "DateRecv",
+                "type": "Datetime"
+            },
+            {
+                "name": "Age",
+                "type": "Int32"
+            },
+            {
+                "name": "Company",
+                "type": "String"
+            },
+            {
+                "name": "ID",
+                "type": "String"
+            },
+            {
+                "name": "Product",
+                "type": "String"
+            },
+            {
+                "name": "Issue",
+                "type": "String"
+            }
+        ],
+        "published": false,
+        "type": "AzureBlob",
+        "linkedServiceName": "LS-BlobStorage",
+        "typeProperties": {
+            "fileName": "finalOpenComplaints.csv",
+            "folderPath": "#CONTAINER-NAME#/OpenComplaintsFinal",
+            "format": {
+                "type": "TextFormat",
+                "rowDelimiter": "\n",
+                "columnDelimiter": ","
+            }
+        },
+        "availability": {
+            "frequency": "Day",
+            "interval": 1,
+            "style": "StartOfInterval"
+        }
+    }
+}

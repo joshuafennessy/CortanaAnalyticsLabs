@@ -1,0 +1,13 @@
+{
+    "name": "LS-HDI",
+    "properties": {
+        "type": "HDInsight",
+        "description": "",
+        "typeProperties": {
+            "clusterUri": "#CLUSTER-URI#",
+            "userName": "#CLUSTER-USERNAME#",
+            "password": "#CLUSTER-PASSWORD#",
+            "linkedServiceName": "LS-BlobStorage"
+        }
+    }
+}
