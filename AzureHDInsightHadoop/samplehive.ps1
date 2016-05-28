@@ -34,16 +34,7 @@ $clusterInfo = Get-AzureRmHDInsightCluster -ClusterName $clusterName
 $resourceGroup = $clusterInfo.ResourceGroup
 $storageAccountName=$clusterInfo.DefaultStorageAccount.split('.')[0]
 $container=$clusterInfo.DefaultStorageContainer
-$storageAccountKey=Get-AzureRmStorageAccountKey `
-    -Name $storageAccountName `
-    -ResourceGroupName $resourceGroup `
-    | %{ $_.Key1 }
+$storageAccountKey=(Get-AzureRmStorageAccountKey -Name $storageAccountName -ResourceGroupName $resourceGroup).Value[0]
 
 Write-Host "Displaying output..." -ForegroundColor Green
-Get-AzureRmHDInsightJobOutput `
-    -Clustername $clusterName `
-    -JobId $hiveJob.JobId `
-    -DefaultContainer $container `
-    -DefaultStorageAccountName $storageAccountName `
-    -DefaultStorageAccountKey $storageAccountKey `
-    -HttpCredential $creds
+Get-AzureRmHDInsightJobOutput -Clustername $clusterName -JobId $hiveJob.JobId -DefaultContainer $container -DefaultStorageAccountName $storageAccountName -DefaultStorageAccountKey $storageAccountKey -HttpCredential $creds
