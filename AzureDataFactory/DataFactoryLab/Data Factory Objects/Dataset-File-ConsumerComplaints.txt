@@ -1,0 +1,97 @@
+{
+    "name": "Dataset-File-ConsumerComplaints",
+    "properties": {
+        "structure": [
+            {
+                "name": "DateRecv",
+                "type": "String"
+            },
+            {
+                "name": "Product",
+                "type": "String"
+            },
+            {
+                "name": "SubProduct",
+                "type": "String"
+            },
+            {
+                "name": "Issue",
+                "type": "String"
+            },
+            {
+                "name": "SubIssue",
+                "type": "String"
+            },
+            {
+                "name": "Narrative",
+                "type": "String"
+            },
+            {
+                "name": "ResponsePub",
+                "type": "String"
+            },
+            {
+                "name": "Company",
+                "type": "String"
+            },
+            {
+                "name": "State",
+                "type": "String"
+            },
+            {
+                "name": "Zip",
+                "type": "String"
+            },
+            {
+                "name": "Tags",
+                "type": "String"
+            },
+            {
+                "name": "Consent",
+                "type": "String"
+            },
+            {
+                "name": "Src",
+                "type": "String"
+            },
+            {
+                "name": "DateCompany",
+                "type": "String"
+            },
+            {
+                "name": "ResponseCust",
+                "type": "String"
+            },
+            {
+                "name": "Timely",
+                "type": "String"
+            },
+            {
+                "name": "Disputed",
+                "type": "String"
+            },
+            {
+                "name": "Id",
+                "type": "String"
+            }
+        ],
+        "published": false,
+        "type": "AzureBlob",
+        "linkedServiceName": "LS-BlobStorage",
+        "typeProperties": {
+            "fileName": "Consumer_Complaints.csv",
+            "folderPath": "#CONTAINER-NAME#/RawComplaints",
+            "format": {
+                "type": "TextFormat",
+                "columnDelimiter": ","
+            }
+        },
+        "availability": {
+            "frequency": "Day",
+            "interval": 1,
+            "style": "StartOfInterval"
+        },
+        "external": true,
+        "policy": {}
+    }
+}

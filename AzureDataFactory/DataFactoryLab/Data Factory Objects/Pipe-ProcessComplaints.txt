@@ -1,0 +1,70 @@
+{
+    "name": "Pipe-ProcessComplaints",
+    "properties": {
+        "description": "This pipeline processes the raw complaints data in Consumer_Complaints.csv into 2 Hive table: RawComplaints and OpenComplaints",
+        "activities": [
+            {
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "#CONTAINER-NAME#\\HiveScripts\\RawComplaints.hql",
+                    "scriptLinkedService": "LS-BlobStorage"
+                },
+                "inputs": [
+                    {
+                        "name": "Dataset-File-ConsumerComplaints"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Dataset-Hive-RawComplaints"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 2
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1,
+                    "style": "StartOfInterval"
+                },
+                "name": "Hive-RawComplaints",
+                "linkedServiceName": "LS-HDI"
+            },
+            {
+                "type": "HDInsightHive",
+                "typeProperties": {
+                    "scriptPath": "#CONTAINER-NAME#\\HiveScripts\\OpenComplaints.hql",
+                    "scriptLinkedService": "LS-BlobStorage"
+                },
+                "inputs": [
+                    {
+                        "name": "Dataset-Hive-RawComplaints"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "Dataset-Hive-OpenComplaints"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 2
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1,
+                    "style": "StartOfInterval"
+                },
+                "name": "Hive-OpenComplaints",
+                "linkedServiceName": "LS-HDI"
+            }
+        ],
+        "start": "2016-04-24T00:00:00Z",
+        "end": "2016-04-29T00:00:00Z",
+        "isPaused": false,
+        "pipelineMode": "Scheduled"
+    }
+}

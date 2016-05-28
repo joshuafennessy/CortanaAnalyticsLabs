@@ -1,0 +1,10 @@
+{
+    "name": "LS-BlobStorage",
+    "properties": {
+        "description": "",
+        "type": "AzureStorage",
+        "typeProperties": {
+            "connectionString": "DefaultEndpointsProtocol=https;AccountName=#STORAGE-ACCOUNT-NAME#;AccountKey=#STORAGE-ACCOUNT-KEY#"
+        }
+    }
+}
