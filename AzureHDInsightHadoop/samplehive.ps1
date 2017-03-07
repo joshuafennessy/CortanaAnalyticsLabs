@@ -6,7 +6,7 @@
 #     with your own cluster name                   #
 ####################################################
 
-$clusterName = "hdi2016"
+$clusterName = "REPLACEWITHYOURHDINSIGHTCLUSTERNAME"
 
 ####################################################
 # Do not change anything below this line           #
@@ -19,7 +19,7 @@ if(-not($sub))
     Add-AzureRmAccount
 }
 
-$queryString = "SELECT IsDefault, YearsOfEmployment, AVG(HouseAge) AS HouseAge, AVG(CCDebt) AS CCDebt FROM hdinsightlab.mortgagedefaults GROUP BY IsDefault, YearsOfEmployment;"
+$queryString = "SELECT Customer, SUM(Quantity), SUM(Profit), SUM(TotalIncludingTax), SUM(TotalDryItems), SUM(TotalChillerItems) FROM bgmshdi.wideworldimporters GROUP BY Customer;"
 
 $hiveJobDefinition = New-AzureRmHDInsightHiveJobDefinition -Query $queryString 
 
